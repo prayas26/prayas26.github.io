@@ -61,7 +61,7 @@ export default function App() {
             </a>
           </li>
           <li>
-            <a href="mailto:prayas.mittal@gmail.com" onClick={() => window.ChatGen && window.ChatGen.startInteraction({ interactionId: 930019 })}>
+            <a onClick={() => window.ChatGen && window.ChatGen.startInteraction({ interactionId: 930019 })}>
               <Chat size={32} />
             </a>
           </li>
