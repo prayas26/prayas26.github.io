@@ -1,13 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
-import './style.scss';
-import LeftPanel from './LeftPanel';
-import RightPanel from './RightPanel';
-import Navigation from './Navigation';
+
+const socialLinks = [
+  {
+    className: 'fab fa-linkedin-in',
+    href: 'https://linkedin.com/in/prayas26'
+  },
+  {
+    className: 'fab fa-twitter',
+    href: 'https://twitter.com/prayas26'
+  },
+  {
+    className: 'fab fa-instagram',
+    href: 'https://instagram.com/prayas26'
+  },
+  {
+    className: 'fas fa-comments',
+    onClick: () => window.ChatGen && window.ChatGen.startInteraction({ interactionId: 930019 })
+  }
+]
 
 export default function App() {
-  const [currentTab, setTab] = useState('about');
-
   useEffect(() => {
     var a = window.ChatGen || [];
     if (!a.loaded) {
@@ -30,18 +43,46 @@ export default function App() {
         document.body.removeChild(widget);
       }
     }
-  }, [])
-
-  const handleTabChange = (tab) => {
-    setTab(tab)
-  }
+  }, []);
 
   return (
     <div className="App">
       <div className="container">
-        {/* <Navigation currentTab={currentTab} onTabChange={handleTabChange} /> */}
-        <LeftPanel />
-        <RightPanel activeTab={currentTab} />
+        <div className="card-container">
+          <img className="round" src="https://storage.googleapis.com/storage-prayasmittal/prayas.jpg" alt="user" />
+          <h3>Prayas Mittal</h3>
+          <h6>Mumbai, India</h6>
+          <p className="company-post">Front-end developer</p>
+          <p className="company"><a href="https://chatgen.ai">@chatgen.ai</a></p>
+          <div className="buttons">
+            <button className="primary">
+              Message
+            </button>
+          </div>
+          <div className="social-icons">
+            {
+              socialLinks.map((datum, key) => {
+                return (
+                  <a className="social-icon" href={datum.href} target={datum.target || '_blank'} onClick={datum.onClick || (() => { })}>
+                    <i className={`${datum.className} font-image`} />
+                  </a>
+                )
+              })
+            }
+          </div>
+          <div className="skills">
+            <h6>Skills</h6>
+            <ul>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>Node</li>
+              <li>Python</li>
+              <li>Front End Development</li>
+              <li>HTML</li>
+              <li>CSS</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
